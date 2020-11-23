@@ -11,7 +11,7 @@ from .serializers import RelaySerializer
 @permission_classes((IsAuthenticated,))
 def relays(request):
     if request.method == 'GET':
-        relays_list = Relay.objects.all()
+        relays_list = Relay.objects.filter(owner=request.user)
         serializer = RelaySerializer(relays_list,
                         context={'request': request}, many=True)
 
