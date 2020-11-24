@@ -16,3 +16,16 @@ def relays(request):
                         context={'request': request}, many=True)
 
         return Response({'relays': serializer.data})
+
+
+@api_view(['GET'])
+@permission_classes((IsAuthenticated,))
+def relay(request, pk):
+    try:
+        relay = Relay.objects.get(pk=pk)
+    except Relay.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = RelaySerializer(relay, context={'request': request})
+        return Response({'data': serializer.data})
