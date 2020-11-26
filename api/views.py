@@ -34,7 +34,8 @@ def relay(request, pk):
 @permission_classes((IsAuthenticated,))
 def new_relay(request):
     if request.method == 'POST':
-        serializer = RelaySerializer(data=request.data)
+        owner = Relay(owner=request.user)
+        serializer = RelaySerializer(owner, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
