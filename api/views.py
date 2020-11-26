@@ -29,3 +29,14 @@ def relay(request, pk):
     if request.method == 'GET':
         serializer = RelaySerializer(relay, context={'request': request})
         return Response({'data': serializer.data})
+
+@api_view(['POST'])
+@permission_classes((IsAuthenticated,))
+def new_relay(request):
+    if request.method == 'POST':
+        owner = Relay(owner=request.user)
+        serializer = RelaySerializer(owner, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
