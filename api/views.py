@@ -18,7 +18,7 @@ def relays(request):
         return Response({'relays': serializer.data})
 
 
-@api_view(['GET', 'PUT'])
+@api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes((IsAuthenticated,))
 def relay(request, pk):
     try:
@@ -27,7 +27,7 @@ def relay(request, pk):
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if relay.owner != request.user:
-        return Response({'response': 'You do not have permissions to edit this'})
+        return Response({'response': 'You do not have permissions for this action'})
 
     if request.method == 'GET':
         serializer = RelaySerializer(relay, context={'request': request})
@@ -38,6 +38,9 @@ def relay(request, pk):
             serializer.save()
             return Response(serializer.data)
         return Response(status=status.HTTP_404_BAD_REQUEST)
+    elif request.method == 'DELETE':
+        relay.delete()
+        return  Response(status=status.HTTP_204_NO_CONTENT)
 
 @api_view(['POST'])
 @permission_classes((IsAuthenticated,))
