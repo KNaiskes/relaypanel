@@ -37,7 +37,7 @@ def relay(request, pk):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
-        return Response(status=status.HTTP_404_BAD_REQUEST)
+        return Response(status=status.HTTP_404_NOT_FOUND)
     elif request.method == 'DELETE':
         relay.delete()
         return  Response(status=status.HTTP_204_NO_CONTENT)
