@@ -12,10 +12,9 @@ from .serializers import RelaySerializer
 def relays(request):
     if request.method == 'GET':
         relays_list = Relay.objects.filter(owner=request.user)
-        serializer = RelaySerializer(relays_list,
-                        context={'request': request}, many=True)
+        serializer = RelaySerializer(relays_list, many=True)
 
-        return Response({'relays': serializer.data})
+        return Response(serializer.data)
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
