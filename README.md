@@ -46,3 +46,35 @@ $ python manage.py runserver
 
 Browse to [localhost:8000/admin/](http://localhost:8000/admin/) in order to add
 new relay devices or users.
+
+# API Paths
+
+**Base url** [localhost:8000/api/](http://localhost:8000/api/)
+
+## GET
+
+| Path          | Result                                           |
+| ------------- | -------------                                    |
+| relays/       | List of all relays (user has permissions to use) |
+| relays/pk     | Single relay                                     |
+
+
+
+## POST
+
+| Path          | Result          | Required Parameters | Optional Parameters |
+| ------------- | -------------   | -------------       | -------------       |
+| relays/new/   | Add a new relay | name, device        | status              |
+
+## PUT
+
+| Path          | Result        | Required Parameters | Required Parameters |
+| ------------- | ------------- | -------------       | -------------       |
+| relays/pk     | Update        | name, device        | status              |
+
+
+## DELETE
+
+| Path          | Result        |
+| ------------- | ------------- |
+| relays/pk     | Delete relay  |
