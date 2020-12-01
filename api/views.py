@@ -29,8 +29,8 @@ def relay(request, pk):
         return Response({'response': 'You do not have permissions for this action'})
 
     if request.method == 'GET':
-        serializer = RelaySerializer(relay, context={'request': request})
-        return Response({'data': serializer.data})
+        serializer = RelaySerializer(relay)
+        return Response(serializer.data)
     elif request.method == 'PUT':
         serializer = RelaySerializer(relay, data=request.data)
         if serializer.is_valid():
