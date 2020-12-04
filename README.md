@@ -62,9 +62,11 @@ new relay devices or users.
 
 ## POST
 
-| Path          | Result          | Required Parameters | Optional Parameters |
-| ------------- | -------------   | -------------       | -------------       |
-| relays/new/   | Add a new relay | name, device        | status              |
+| Path           | Result          | Required Parameters | Optional Parameters |
+| -------------  | -------------   | -------------       | -------------       |
+| api-token-auth | User's token    | username, password  | N/A                 |
+| relays/new/    | Add a new relay | name, device        | status              |
+
 
 ## PUT
 
