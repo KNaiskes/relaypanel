@@ -4,4 +4,4 @@ from .models import Relay
 class RelaySerializer(serializers.ModelSerializer):
     class Meta:
         model = Relay
-        fields = ['name', 'device', 'status']
+        fields = ['id', 'name', 'device', 'status']
