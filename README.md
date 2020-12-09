@@ -2,6 +2,8 @@
 
 An API for adding, removing and updating relay devices
 
+Checkout also [relaypanel-frontend](https://github.com/KNaiskes/relaypanel-frontend)
+
 ## Dependencies
 
 - Python 3
