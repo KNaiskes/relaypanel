@@ -70,7 +70,7 @@ new relay devices or users.
 
 ## PUT
 
-| Path          | Result        | Required Parameters | Required Parameters |
+| Path          | Result        | Required Parameters | Optional Parameters |
 | ------------- | ------------- | -------------       | -------------       |
 | relays/pk     | Update        | name, device        | status              |
 
