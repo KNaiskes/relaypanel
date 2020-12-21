@@ -1,4 +1,4 @@
-# relaypanel
+# relaypanel ![Django CI](https://github.com/KNaiskes/relaypanel/workflows/Django%20CI/badge.svg)
 
 An API for adding, removing and updating relay devices
 
