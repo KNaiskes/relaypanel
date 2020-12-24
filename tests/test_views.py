@@ -28,3 +28,8 @@ class ViewsTestCase(APITestCase):
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.user1_token.key)
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_post_relays_without_token(self):
+        url = reverse('api:new_relay')
+        response = self.client.post(url, {}, fromat='json')
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
