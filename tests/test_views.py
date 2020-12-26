@@ -45,3 +45,21 @@ class ViewsTestCase(APITestCase):
         }
         response = self.client.post(url, self.new_relay, fromat='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+    def test_put_relay_without_token(self):
+        url = reverse('api:relay', kwargs={'pk': self.desk_lamp.id })
+        response = self.client.put(url, {}, fromat='json')
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+
+    def test_put_successful_requests(self):
+        url = reverse('api:relay', kwargs={'pk': self.desk_lamp.id })
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.user1_token.key)
+        self.updated_relay = {
+            'name': 'updated name',
+            'device': 'updated device',
+            'status': 'True',
+            'owner': self.user1
+        }
+        response = self.client.put(url, self.updated_relay, fromat='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
