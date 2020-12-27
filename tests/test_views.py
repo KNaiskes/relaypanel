@@ -63,3 +63,14 @@ class ViewsTestCase(APITestCase):
         }
         response = self.client.put(url, self.updated_relay, fromat='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_delete_without_token(self):
+        url = reverse('api:relay', kwargs={'pk': self.desk_lamp.id })
+        response = self.client.delete(url, {}, fromat='json')
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    def test_delete_successful_requests(self):
+        url = reverse('api:relay', kwargs={'pk': self.desk_lamp.id })
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.user1_token.key)
+        response = self.client.delete(url, fromat='json')
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
